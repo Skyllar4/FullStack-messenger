@@ -8,7 +8,7 @@ function App() {
     <ul>
       <li><Link to="register">Регистрация</Link></li>
       <li><Link to="login">Войти</Link></li>
-      <li><Link to="users">Профиль</Link></li>
+      <li><Link to="profile">Профиль</Link></li>
     </ul>
   );
 }

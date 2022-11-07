@@ -49,8 +49,6 @@ export const register = async (req, res) => {
 
 export const login = async (req, res) => {
 
-    console.log(req.body)
-
     try {
 
         const user = await UserModel.findOne({ userName: req.body.userName });
@@ -74,7 +72,7 @@ export const login = async (req, res) => {
         ); 
 
         const { passwordHash, ...userData } = user._doc;
-        res.cookie('isLogin', 'true');
+        res.cookie('LoginToken', `${token}`);
         res.json({...userData, token});
         
     } catch (err) {
@@ -107,14 +105,3 @@ export const auth = async (req, res) => {
     }
 
 };
-
-// export const users = async (req, res) => {
-//     try {
-//         const users = await UserModel.find();
-//         res.json(users);
-//     } catch (err) {
-//         res.status(500).json({
-//             message: 'Нет доступа'
-//         });
-//     }
-// }

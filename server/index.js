@@ -17,8 +17,8 @@ app.use(express.json());
 
 app.post('/register', userController.register);
 app.post('/login', userController.login);
-app.get('/user/info', checkauth, userController.auth);
-app.get('/users', userController.users);
+app.get('/profile', checkauth, userController.auth);
+// app.get('/users', userController.auth);
 
 app.listen(200, (err) => {
     if (err) {
