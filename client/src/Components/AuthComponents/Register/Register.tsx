@@ -1,6 +1,11 @@
 import React from "react";
+import '../../../Styles/register.scss';
 
-export function Register() {
+interface registerFormProps {
+    isRegister: boolean
+}
+
+export function Register({isRegister}: registerFormProps) {
 
     const [login, setLogin] = React.useState('');
     const [email, setEmail] = React.useState('');
@@ -31,17 +36,28 @@ export function Register() {
         setPassword(event.target.value);
     }
 
+    const inputElementsClean = () => {
+        setLogin('');
+        setEmail('');
+        setPassword('');
+    }
+
     const handleSubmit = (event: React.FormEvent) => {
         fetchReg(login, email, password);
+        inputElementsClean();
         event.preventDefault();
     }
 
-    return (
-        <form onSubmit={handleSubmit}>
-            <input onChange={handleChangeLogin} type="text" placeholder="Login" required/>
-            <input onChange={handleChangeEmail} type="email" placeholder="Email" required/>
-            <input onChange={handleChangePassword} type="password" placeholder="Password" required/>
-            <button type="submit">Зарегистрироваться</button>
+    if (isRegister) {
+        return (
+        <form className="authForm" onSubmit={handleSubmit}>
+            <input className="reg-form-elements" onChange={handleChangeLogin} type="text" placeholder="Login" required autoFocus/>
+            <input className="reg-form-elements" onChange={handleChangeEmail} type="email" placeholder="Email" required/>
+            <input className="reg-form-elements" onChange={handleChangePassword} type="password" placeholder="Password" required/>
+            <button className="regFormBtn" type="submit">Зарегистрироваться</button>
         </form>
     );
+    } else {
+        return <span></span>
+    }
 }

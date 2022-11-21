@@ -8,9 +8,8 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
-import { Register } from './Components/Register/Register';
-import { Login } from './Components/Login/Login';
 import { Profile } from './Components/Profile/Profile';
+import { MainChatComponent } from './Components/MainChat/MainChatComponent';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -20,9 +19,8 @@ root.render(
     <React.StrictMode>
       <Routes>
         <Route path='/' element={<App />} />
-        <Route path='register' element={<Register />}/>
-        <Route path="login" element={<Login/>}/>
         <Route path='profile' element={<Profile/>}/>
+        <Route path='chat' element={<MainChatComponent/>}/>
       </Routes>
     </React.StrictMode>
   </BrowserRouter>

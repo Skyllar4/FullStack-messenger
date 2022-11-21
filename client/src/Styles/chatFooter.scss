@@ -1,0 +1,17 @@
+@import './vars.scss';
+
+.formMessage {
+
+    display: contents;
+
+    &__type-input {
+        @include inputElements;
+        max-width: 100%;
+        flex: 1;
+    }
+
+    &__submit-button {
+        padding: 16px;
+    }
+
+}
