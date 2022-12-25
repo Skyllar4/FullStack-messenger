@@ -3,8 +3,11 @@ import express from 'express';
 import * as userController from './controllers/userController.js';
 import checkauth from "./utils/checkauth.js";
 import * as dotenv from 'dotenv';
+import WebSocket from 'ws';
 
 dotenv.config();
+
+const server = new WebSocket.Server({noServer: true});
 
 mongoose
 .connect(`mongodb+srv://${process.env.USERNAME}:${process.env.BD_PASS}@cluster0.87ueqch.mongodb.net/${process.env.DB_NAME}?retryWrites=true&w=majority`)
@@ -23,5 +26,8 @@ app.listen(200, (err) => {
     if (err) {
         return console.log(err);
     } 
+    server.on('connection', ws => {
+        ws.send('WebSocket connect');
+    });
     console.log('OK');
 });

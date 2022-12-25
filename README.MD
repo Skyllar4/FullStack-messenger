@@ -1,7 +1,7 @@
 # How to run
-1. npm i
+1. cd server/client
 2. Start server and client in terminal
-3. cd server/client
+3. npm i
 4. npm run start:dev - server
 5. npm start - client
 

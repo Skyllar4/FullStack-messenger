@@ -6,7 +6,7 @@ export function Login() {
     const [password, setPassword] = React.useState('');
 
 
-    function fetchLogin(login: string, password: string) {
+    function getUserLogin(login: string, password: string) {
         fetch('/login', {
             headers: { "Content-Type": "application/json" },
             method: "POST",
@@ -26,7 +26,7 @@ export function Login() {
     }
 
     const handleSubmit = (event: React.FormEvent) => {
-        fetchLogin(login, password);
+        getUserLogin(login, password);
         event.preventDefault();
     }
 
