@@ -1,0 +1,2 @@
+Pull Request "reg":
+    A backend was created, a database was connected, a user registration and login with a database entry was created, as well as the ability to view a profile for an authorized user, a User table model was implemented, as well as hashing of confidential data
