@@ -1,10 +1,12 @@
 import mongoose from 'mongoose';
 import express from 'express';
 import * as userController from './controllers/userController.js';
+import * as chatController from './controllers/chatController.js';
 import checkauth from "./utils/checkauth.js";
 import * as dotenv from 'dotenv';
 import { Server } from 'socket.io';
 import http from 'http';
+import ChatModel from "./models/ChatList.js";
 
 dotenv.config(); // переменные окружения
 
@@ -20,18 +22,28 @@ app.use(express.json());
 app.post('/register', userController.register);
 app.post('/login', userController.login);
 app.get('/profile', checkauth, userController.auth);
+app.get('/chat', chatController.getChatData);
+app.post('/chat/create', chatController.createMessage); // Вынести в роуты
 
 const server = http.createServer(app)
 const io = new Server(server);
 
 io.on('connection', (socket) => {
+    try {
     console.log('a user connected');
     socket.on('disconnect', () => {
         console.log('user disconnected');
       });
       socket.on('chat message', (msg) => {
-        console.log('message: ' + msg);
-      });
+            const doc = new ChatModel({
+                chatList: msg
+            });
+            doc.save();  // ???????? правильно ли это решение?
+       });
+    }
+    catch (err) {
+        console.log(err)
+    }
 });
 
 server.listen(200, (err) => {
